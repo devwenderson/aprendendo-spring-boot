@@ -2,20 +2,37 @@ package com.wenderson.leitura.service;
 
 import java.util.List;
 
-import com.wenderson.leitura.domain.Livro;
 import com.wenderson.leitura.dto.LivroDTO;
+import com.wenderson.leitura.domain.Livro;
+import com.wenderson.leitura.repository.LivroRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LivroService {
 
-    public String listarMensagem() {
-        return "Listando livros da aplicação";
+    private final LivroRepository livroRepository;
+
+    public LivroService(LivroRepository livroRepository) {
+        this.livroRepository = livroRepository;
     }
 
-    public Livro livroExemplo() {
-        return new Livro("Dom Casmurro", "Machado de Assis");
+    public List<Livro> listar() {
+        return livroRepository.findAll();
     }
+
+    public Livro criar(Livro livro) {
+        return livroRepository.save(livro);
+    }
+
+
+
+//    public String listarMensagem() {
+//        return "Listando livros da aplicação";
+//    }
+//
+//    public Livro livroExemplo() {
+//        return new Livro("Dom Casmurro", "Machado de Assis");
+//    }
 
     public List<Livro> listarLivros() {
         return List.of(

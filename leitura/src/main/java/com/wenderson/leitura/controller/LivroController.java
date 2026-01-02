@@ -6,10 +6,10 @@ import com.wenderson.leitura.domain.Livro;
 import com.wenderson.leitura.service.LivroService;
 import com.wenderson.leitura.dto.LivroDTO;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/livros/")
 public class LivroController {
     private final LivroService livroService;
 
@@ -17,17 +17,17 @@ public class LivroController {
         this.livroService = livroService;
     }
 
-    @GetMapping("/livros")
+    @GetMapping
     public List<Livro> listar() {
-        return livroService.listarLivros();
+        return livroService.listar();
     }
 
-    @GetMapping("/livro")
-    public Livro livro() {
-        return livroService.livroExemplo();
+    @PostMapping
+    public Livro criar(@RequestBody Livro Livro) {
+        return livroService.criar(Livro);
     }
 
-    @GetMapping("/livros/titulos")
+    @GetMapping("titulos/")
     public List<LivroDTO> listarTitulos() {
         return livroService.listarLivrosDTO();
     }
