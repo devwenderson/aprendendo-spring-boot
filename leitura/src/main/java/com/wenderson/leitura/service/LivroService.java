@@ -24,16 +24,6 @@ public class LivroService {
         return livroRepository.save(livro);
     }
 
-
-
-//    public String listarMensagem() {
-//        return "Listando livros da aplicação";
-//    }
-//
-//    public Livro livroExemplo() {
-//        return new Livro("Dom Casmurro", "Machado de Assis");
-//    }
-
     public List<Livro> listarLivros() {
         return List.of(
                 new Livro("Percy Jackson", "Rick Riordan"),
