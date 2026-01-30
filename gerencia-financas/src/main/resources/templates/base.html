@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:fragment="base (title, links, content)">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:text="${title}"></title>
+
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+	<link rel="stylesheet" th:href="@{/css/components.css}">
+	<th:block th:replace="${links}" />
+
+</head>
+<body>
+	<header th:insert="~{ components/navbar :: navbar }"></header>
+	
+	<th:block th:replace="${ content }"/>
+
+	<footer th:replace="~{ components/footer :: footer }"></footer>
+</body>
+</html>
