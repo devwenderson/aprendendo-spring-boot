@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @GetMapping("/api")
     public String home() {
-        return "Rotas da API: {\napi/usuarios | \napi/projetos\n}";
+        return "Rotas da API:  <br> api/usuarios <br> api/projetos <br>";
     }
     
 }

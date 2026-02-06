@@ -38,15 +38,48 @@ class RequestAPI:
         response = requests.delete(f"{cls.BASE_URL}/usuarios/{id}")
         return response.status_code
 
-id = 1
-nome = "Wenderson da Silva Nascimento"
-email = "wenderson.silva@gmail.com"
-senha = "1234"
-# status = RequestAPI.criar_usuarios(nome=nome, email=email, senha=senha)
-print(RequestAPI.listar_usuarios())
+    @classmethod
+    def listar_projetos(cls):
+        response = requests.get(f"{cls.BASE_URL}/projetos")
+        return response.json()
 
+    @classmethod
+    def criar_projetos(cls, inicado_em, finalizado_em, finalizar_em, valor, descricao, usuario):
+        data = {
+            "inicado_em": inicado_em, 
+            "finalizado_em": finalizado_em, 
+            "finalizar_em": finalizar_em, 
+            "valor": valor, 
+            "descricao": descricao, 
+            "usuario": usuario
+        }
+
+        response = requests.post(f"{cls.BASE_URL}/projetos", json=data)
+        return response.status_code
+
+# id = 1
+# nome = "Wenderson da Silva Nascimento"
+# email = "wenderson.silva@gmail.com"
+# senha = "1234"
+# status = RequestAPI.criar_usuarios(nome=nome, email=email, senha=senha)
+# print(status)
+
+# print(RequestAPI.listar_usuarios())
 
 # print(RequestAPI.buscar_usuarios_por_id(1)["status"])
-print(RequestAPI.deletar_usuario(3))
+# print(RequestAPI.deletar_usuario(3))
+# print(RequestAPI.listar_usuarios())
+
+inicado_em = "2026-02-06"
+finalizado_em = ""
+finalizar_em = "2026-02-12"
+valor = 1200.99
+descricao = "Projeto em desenvolvimento"
+usuario = RequestAPI.buscar_usuarios_por_id(4)
+# print(usuario)
 print(RequestAPI.listar_usuarios())
+
+
+# print(RequestAPI.criar_projetos(inicado_em, finalizado_em, finalizar_em, valor, descricao, usuario))
+# print(RequestAPI.listar_projetos())
 

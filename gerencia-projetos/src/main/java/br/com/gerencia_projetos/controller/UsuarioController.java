@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gerencia_projetos.domain.Usuario;
+import br.com.gerencia_projetos.dto.UsuarioDTO;
 import br.com.gerencia_projetos.service.UsuarioService;
 
 @RestController
@@ -30,13 +31,13 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> listUsuario() {
+    public List<UsuarioDTO> listUsuario() {
         return usuarioService.listAllUsuarios();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
-        Usuario usuario = usuarioService.getUsuarioById(id);
+    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long id) {
+        UsuarioDTO usuario = usuarioService.getUsuarioDTOById(id);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 

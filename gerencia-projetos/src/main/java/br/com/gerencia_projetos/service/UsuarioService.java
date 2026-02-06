@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gerencia_projetos.domain.Usuario;
+import br.com.gerencia_projetos.dto.UsuarioDTO;
 import br.com.gerencia_projetos.repository.UsuarioRepository;
 
 @Service
@@ -20,8 +21,11 @@ public class UsuarioService {
     }
 
     // Listar todos os usuarios
-    public List<Usuario> listAllUsuarios() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDTO> listAllUsuarios() {
+        return usuarioRepository.findAll()
+            .stream()
+            .map(UsuarioDTO::new)
+            .toList();
     }
 
     // Buscar usuário
@@ -30,6 +34,14 @@ public class UsuarioService {
         return usuario.orElseThrow(() -> new RuntimeException(
             "Usuário não encontrado! ID: " + id
         ));
+    }
+
+    public UsuarioDTO getUsuarioDTOById(Long id) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException(
+            "Usuário não encontrado! ID: " + id
+        ));
+        UsuarioDTO usuarioDto = new UsuarioDTO(usuario);
+        return usuarioDto;
     }
 
     // Atualizar usuário
