@@ -24,7 +24,7 @@ public class UsuarioService {
     public List<UsuarioDTO> listAllUsuarios() {
         return usuarioRepository.findAll()
             .stream()
-            .map(UsuarioDTO::new)
+            .map((usu) -> new UsuarioDTO(usu))
             .toList();
     }
 

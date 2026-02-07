@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gerencia_projetos.domain.Projeto;
+import br.com.gerencia_projetos.dto.ProjetoRequestDTO;
+import br.com.gerencia_projetos.dto.ProjetoResponseDTO;
 import br.com.gerencia_projetos.repository.ProjetoRepository;
+import br.com.gerencia_projetos.domain.Usuario;
 
 @Service
 public class ProjetoService {
@@ -15,12 +18,22 @@ public class ProjetoService {
     @Autowired
     private ProjetoRepository projetoRepository; 
 
-    public Projeto createProjeto(Projeto projeto) {
-        return projetoRepository.save(projeto);
+    @Autowired
+    private UsuarioService usuarioService;
+
+    public ProjetoResponseDTO createProjeto(ProjetoRequestDTO dto) {
+        Usuario usuario = usuarioService.getUsuarioById(dto.getId_usuario());
+        Projeto projeto = new Projeto(null, dto.getInicado_em(), 
+        dto.getFinalizado_em(), dto.getFinalizar_em(), dto.getValor(), dto.getDescricao(), usuario);
+        Projeto projeto_criado = projetoRepository.save(projeto);
+        return new ProjetoResponseDTO(projeto_criado);
     }
 
-    public List<Projeto> listAllProjeto() {
-        return projetoRepository.findAll();
+    public List<ProjetoResponseDTO> listAllProjeto() {
+        return projetoRepository.findAll()
+            .stream()
+            .map((pro) -> new ProjetoResponseDTO(pro))
+            .toList();
     }
 
     public Projeto getProjetoById(Long id) {

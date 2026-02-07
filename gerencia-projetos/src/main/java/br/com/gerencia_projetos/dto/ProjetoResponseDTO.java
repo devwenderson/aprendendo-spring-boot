@@ -3,26 +3,27 @@ package br.com.gerencia_projetos.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ProjetoRequestDTO {
+import br.com.gerencia_projetos.domain.Projeto;
+
+public class ProjetoResponseDTO {
     private Long id; 
     private LocalDate inicado_em; 
     private LocalDate finalizado_em; 
     private LocalDate finalizar_em; 
     private BigDecimal valor;
     private String descricao; 
-    private Long id_usuario;
+    private UsuarioDTO usuario;
 
-    public ProjetoRequestDTO() {}
+    public ProjetoResponseDTO() {}
 
-    public ProjetoRequestDTO(Long id, LocalDate inicado_em, LocalDate finalizado_em, LocalDate finalizar_em,
-            BigDecimal valor, String descricao, Long id_usuario) {
-        this.id = id;
-        this.inicado_em = inicado_em;
-        this.finalizado_em = finalizado_em;
-        this.finalizar_em = finalizar_em;
-        this.valor = valor;
-        this.descricao = descricao;
-        this.id_usuario = id_usuario;
+    public ProjetoResponseDTO(Projeto projeto) {
+        this.id = projeto.getId();
+        this.inicado_em = projeto.getInicado_em();
+        this.finalizado_em = projeto.getFinalizado_em();
+        this.finalizar_em = projeto.getFinalizar_em();
+        this.valor = projeto.getValor();
+        this.descricao = projeto.getDescricao();
+        this.usuario = new UsuarioDTO(projeto.getUsuario());
     }
 
     public Long getId() {
@@ -73,11 +74,13 @@ public class ProjetoRequestDTO {
         this.descricao = descricao;
     }
 
-    public Long getId_usuario() {
-        return id_usuario;
+    public UsuarioDTO getUsuario() {
+        return usuario;
     }
 
-    public void setId_usuario(Long id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
     }
+
+    
 }

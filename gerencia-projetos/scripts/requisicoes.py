@@ -1,4 +1,4 @@
-import requests
+import requests,json
 
 class RequestAPI:
     BASE_URL = "http://localhost:8080/api"
@@ -44,14 +44,14 @@ class RequestAPI:
         return response.json()
 
     @classmethod
-    def criar_projetos(cls, inicado_em, finalizado_em, finalizar_em, valor, descricao, usuario):
+    def criar_projetos(cls, inicado_em, finalizado_em, finalizar_em, valor, descricao, id_usuario):
         data = {
             "inicado_em": inicado_em, 
             "finalizado_em": finalizado_em, 
             "finalizar_em": finalizar_em, 
             "valor": valor, 
             "descricao": descricao, 
-            "usuario": usuario
+            "id_usuario": id_usuario
         }
 
         response = requests.post(f"{cls.BASE_URL}/projetos", json=data)
@@ -73,13 +73,15 @@ class RequestAPI:
 inicado_em = "2026-02-06"
 finalizado_em = ""
 finalizar_em = "2026-02-12"
-valor = 1200.99
-descricao = "Projeto em desenvolvimento"
-usuario = RequestAPI.buscar_usuarios_por_id(4)
+valor = 4000
+descricao = "Projeto 2"
+usuario = 1
 # print(usuario)
-print(RequestAPI.listar_usuarios())
+# print(RequestAPI.listar_usuarios())
 
 
 # print(RequestAPI.criar_projetos(inicado_em, finalizado_em, finalizar_em, valor, descricao, usuario))
-# print(RequestAPI.listar_projetos())
+
+dados_str = json.dumps(RequestAPI.listar_projetos(), indent=4)
+print(dados_str)
 

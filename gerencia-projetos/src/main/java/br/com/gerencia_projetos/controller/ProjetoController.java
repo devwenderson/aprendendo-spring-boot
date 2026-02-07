@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gerencia_projetos.domain.Projeto;
 import br.com.gerencia_projetos.service.ProjetoService;
+import br.com.gerencia_projetos.dto.ProjetoRequestDTO;
+import br.com.gerencia_projetos.dto.ProjetoResponseDTO;
 
 @RestController
 @RequestMapping("/api/projetos")
@@ -21,13 +23,13 @@ public class ProjetoController {
     private ProjetoService projetoService;
 
     @PostMapping
-    public ResponseEntity<Projeto> createProjeto(@RequestBody Projeto projeto) {
-        Projeto projeto_criado = projetoService.createProjeto(projeto);
-        return new ResponseEntity<>(projeto_criado, HttpStatus.OK);
+    public ResponseEntity<ProjetoResponseDTO> createProjeto(@RequestBody ProjetoRequestDTO dto) {
+        ProjetoResponseDTO projeto_criado = projetoService.createProjeto(dto);
+        return new ResponseEntity<>(projeto_criado, HttpStatus.CREATED);
     }
     
     @GetMapping
-    public List<Projeto> listProjeto() {
+    public List<ProjetoResponseDTO> listProjeto() {
         return projetoService.listAllProjeto();
     }
 }
