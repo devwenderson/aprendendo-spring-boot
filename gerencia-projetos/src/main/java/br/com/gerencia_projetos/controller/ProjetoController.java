@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.gerencia_projetos.domain.Projeto;
 import br.com.gerencia_projetos.service.ProjetoService;
 import br.com.gerencia_projetos.dto.ProjetoRequestDTO;
 import br.com.gerencia_projetos.dto.ProjetoResponseDTO;

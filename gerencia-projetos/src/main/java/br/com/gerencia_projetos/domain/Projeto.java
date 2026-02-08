@@ -21,7 +21,7 @@ public class Projeto {
     private Long id;
 
     @Column(name = "pro_iniciado_em", nullable = false)
-    private LocalDate inicado_em;
+    private LocalDate iniciado_em;
     
     @Column(name = "pro_finalizado_em", nullable = true)
     private LocalDate finalizado_em;
@@ -42,14 +42,14 @@ public class Projeto {
     Projeto() {}
 
     public Projeto( Long id, 
-                    LocalDate inicado_em, 
+                    LocalDate iniciado_em, 
                     LocalDate finalizado_em, 
                     LocalDate finalizar_em, 
                     BigDecimal valor,
                     String descricao, 
                     Usuario usuario ) {
         this.id = id;
-        this.inicado_em = inicado_em;
+        this.iniciado_em = iniciado_em;
         this.finalizado_em = finalizado_em;
         this.finalizar_em = finalizar_em;
         this.valor = valor;
@@ -65,11 +65,11 @@ public class Projeto {
         this.id = id;
     }
 
-    public LocalDate getInicado_em() {
-        return inicado_em;
+    public LocalDate getIniciado_em() {
+        return iniciado_em;
     }
-    public void setInicado_em(LocalDate inicado_em) {
-        this.inicado_em = inicado_em;
+    public void setIniciado_em(LocalDate iniciado_em) {
+        this.iniciado_em = iniciado_em;
     }
 
     public LocalDate getFinalizado_em() {

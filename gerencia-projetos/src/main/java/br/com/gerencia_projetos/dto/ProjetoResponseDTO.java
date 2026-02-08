@@ -18,7 +18,7 @@ public class ProjetoResponseDTO {
 
     public ProjetoResponseDTO(Projeto projeto) {
         this.id = projeto.getId();
-        this.inicado_em = projeto.getInicado_em();
+        this.inicado_em = projeto.getIniciado_em();
         this.finalizado_em = projeto.getFinalizado_em();
         this.finalizar_em = projeto.getFinalizar_em();
         this.valor = projeto.getValor();

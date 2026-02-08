@@ -49,7 +49,7 @@ public class ProjetoService {
         projeto.setDescricao(detalhesProjeto.getDescricao());
         projeto.setFinalizado_em(detalhesProjeto.getFinalizado_em());
         projeto.setFinalizar_em(detalhesProjeto.getFinalizar_em());
-        projeto.setInicado_em(detalhesProjeto.getInicado_em());
+        projeto.setIniciado_em(detalhesProjeto.getIniciado_em());
         projeto.setValor(detalhesProjeto.getValor());
         return projetoRepository.save(projeto);
     }
